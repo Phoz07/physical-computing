@@ -1,5 +1,5 @@
 {
-	"name": "phycom-server",
+	"name": "phycom-backend",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-06-15",
 	"compatibility_flags": ["nodejs_compat"],
@@ -25,7 +25,8 @@
 			"binding": "DB",
 			"database_name": "phycom-project",
 			"database_id": "29bb4c0a-6121-438b-9acb-b92951c70b42",
-			"migrations_dir": "./src/db/migrations"
+			"migrations_dir": "./src/db/migrations",
+			"remote": true
 		}
 	]
 }
