@@ -1,10 +1,8 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { useTime } from "@/lib/use-time";
 import { useWeather } from "@/lib/use-weather";
-import { getIconByWmo, getWmoIconAndLabel } from "@/lib/wmo-icons";
-import { CurrencyIcon, Icon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Status() {
   const { format } = useTime({ intervalMs: 1000 });
@@ -23,33 +21,52 @@ export default function Status() {
   });
 
   return (
-    <Card className="w-150 p-6 flex flex-col items-end">
+    <Card className="min-w-full w-full p-6 flex flex-col items-start md:items-end">
       <Badge variant={"outline"} className="font-geist-mono uppercase">
         Client Information
       </Badge>
-      <div className="flex-col items-end flex gap-2">
-        <h2 className="uppercase font-bold text-5xl font-geist-mono">
-          {format("HH:mm:ss")}
-        </h2>
-        <p className="uppercase font-geist-mono">
-          {format("dddd DD MMMM YYYY")}
-        </p>
+      <div className="flex-col items-start md:items-end flex gap-2 w-full">
+        {isLoading ? (
+          <>
+            <Skeleton className="h-8 w-40 md:w-56" />
+            <Skeleton className="h-4 w-56 mt-1" />
+          </>
+        ) : (
+          <>
+            <h2 className="uppercase font-bold text-3xl md:text-5xl font-geist-mono">
+              {format("HH:mm:ss")}
+            </h2>
+            <p className="uppercase font-geist-mono text-sm md:text-base">
+              {format("dddd DD MMMM YYYY")}
+            </p>
+          </>
+        )}
       </div>
       <Badge variant={"outline"} className="font-geist-mono uppercase">
         Hardware Weather
       </Badge>
-      <div className="flex-col items-end flex gap-2 font-geist-mono">
-        <h2 className="flex items-center gap-4 font-bold text-4xl ">
-          {Icon ? <Icon size={"1.2em"} /> : null}
-          {currentDescription}
-        </h2>
-        <p className="">
-          TEMP : {data?.current.temperature_2m}
-          {data?.current_units.temperature_2m}
-        </p>
-        <Badge variant={"outline"}>
-          Weather API Update At : {data?.current.time}
-        </Badge>
+      <div className="flex-col items-start md:items-end flex gap-2 font-geist-mono w-full">
+        {isLoading ? (
+          <>
+            <Skeleton className="h-6 w-40 md:w-56" />
+            <Skeleton className="h-4 w-24 mt-1" />
+            <Skeleton className="h-6 w-48 mt-2" />
+          </>
+        ) : (
+          <>
+            <h2 className="flex items-center gap-4 font-bold text-2xl md:text-4xl">
+              {Icon ? <Icon size={"1.2em"} /> : null}
+              {currentDescription}
+            </h2>
+            <p>
+              TEMP : {data?.current.temperature_2m}
+              {data?.current_units.temperature_2m}
+            </p>
+            <Badge variant={"outline"}>
+              Weather API Update At : {data?.current.time}
+            </Badge>
+          </>
+        )}
       </div>
     </Card>
   );
