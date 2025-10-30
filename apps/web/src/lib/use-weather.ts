@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios, { type AxiosError } from "axios";
 import type { LucideIcon } from "lucide-react";
+import { useMemo } from "react";
 import { getWmoIconAndLabel, getWmoAriaLabel } from "@/lib/wmo-icons";
 
 // === Types for Open-Meteo response ===
@@ -95,8 +96,31 @@ const DEFAULT_LON = 100.75;
 const DEFAULT_TZ = "Asia/Bangkok";
 
 /**
- * React hook to fetch weather data from Open-Meteo using axios.
+ * Async function to fetch weather data from Open-Meteo API.
  * API reference: https://api.open-meteo.com/
+ */
+async function fetchWeather(
+  latitude: number,
+  longitude: number,
+  timezone: string
+): Promise<WeatherResponse> {
+  const url = "https://api.open-meteo.com/v1/forecast";
+  const params = {
+    latitude,
+    longitude,
+    current: "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m",
+    hourly: "temperature_2m,relative_humidity_2m,precipitation_probability",
+    daily: "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
+    timezone,
+  };
+
+  const response = await axios.get<WeatherResponse>(url, { params });
+  return response.data;
+}
+
+/**
+ * React hook to fetch weather data using React Query.
+ * Supports automatic polling with configurable refresh interval.
  */
 export function useWeather(options: UseWeatherOptions = {}): UseWeatherReturn {
   const {
@@ -107,82 +131,55 @@ export function useWeather(options: UseWeatherOptions = {}): UseWeatherReturn {
     isNight = false,
   } = options;
 
-  const [data, setData] = useState<WeatherResponse | null>(null);
-  const [error, setError] = useState<AxiosError | null>(null);
-  const [status, setStatus] = useState<UseWeatherStatus>("idle");
-  const timerRef = useRef<number | null>(null);
+  const { data, error, isLoading, isError, isSuccess, refetch } = useQuery<
+    WeatherResponse,
+    AxiosError
+  >({
+    queryKey: ["weather", latitude, longitude, timezone],
+    queryFn: () => fetchWeather(latitude, longitude, timezone),
+    staleTime: 60 * 1000, // 60 seconds
+    refetchInterval: autoRefreshMs && autoRefreshMs > 0 ? Math.max(5_000, autoRefreshMs) : false,
+    retry: 2,
+  });
 
-  const url = useMemo(() => {
-    return "https://api.open-meteo.com/v1/forecast";
-  }, []);
+  const status: UseWeatherStatus = isLoading
+    ? "loading"
+    : isError
+      ? "error"
+      : isSuccess
+        ? "success"
+        : "idle";
 
-  const params = useMemo(() => {
-    return {
-      latitude,
-      longitude,
-      current: "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m",
-      hourly: "temperature_2m,relative_humidity_2m,precipitation_probability",
-      daily: "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
-      timezone,
-    } as const;
-  }, [latitude, longitude, timezone]);
+  const currentIcon = useMemo(() => {
+    if (!data) return null;
+    const { Icon } = getWmoIconAndLabel(data.current.weather_code, { isNight });
+    return Icon;
+  }, [data, isNight]);
 
-  const refetch = useCallback(async () => {
-    setStatus((s) => (s === "success" ? "loading" : "loading"));
-    setError(null);
-    try {
-      const res = await axios.get<WeatherResponse>(url, { params });
-      setData(res.data);
-      setStatus("success");
-    } catch (err) {
-      setError(err as AxiosError);
-      setStatus("error");
-    }
-  }, [url, params]);
+  const currentIconLabel = useMemo(() => {
+    if (!data) return null;
+    const { label } = getWmoIconAndLabel(data.current.weather_code, { isNight });
+    return label;
+  }, [data, isNight]);
 
-  useEffect(() => {
-    // initial load
-    refetch();
-  }, [refetch]);
-
-  useEffect(() => {
-    if (autoRefreshMs == null || autoRefreshMs <= 0) {
-      return;
-    }
-    const id = window.setInterval(() => {
-      refetch();
-    }, Math.max(5_000, autoRefreshMs));
-    timerRef.current = id;
-    return () => {
-      if (timerRef.current !== null) {
-        window.clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, [autoRefreshMs, refetch]);
+  const currentDescription = useMemo(() => {
+    if (!data) return null;
+    return getWmoAriaLabel(data.current.weather_code);
+  }, [data]);
 
   return {
-    data,
-    error,
+    data: data ?? null,
+    error: error ?? null,
     status,
-    isLoading: status === "loading",
-    isError: status === "error",
-    isSuccess: status === "success",
-    refetch,
-    currentIcon: useMemo(() => {
-      if (!data) return null;
-      const { Icon } = getWmoIconAndLabel(data.current.weather_code, { isNight });
-      return Icon;
-    }, [data, isNight]),
-    currentIconLabel: useMemo(() => {
-      if (!data) return null;
-      const { label } = getWmoIconAndLabel(data.current.weather_code, { isNight });
-      return label;
-    }, [data, isNight]),
-    currentDescription: useMemo(() => {
-      if (!data) return null;
-      return getWmoAriaLabel(data.current.weather_code);
-    }, [data]),
+    isLoading,
+    isError,
+    isSuccess,
+    refetch: async () => {
+      await refetch();
+    },
+    currentIcon,
+    currentIconLabel,
+    currentDescription,
   };
 }
 
