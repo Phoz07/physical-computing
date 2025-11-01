@@ -1,0 +1,28 @@
+{
+  "name": "Helmet Detection System for Automatic Door Access",
+  "short_name": "Helmet Detection",
+  "description": "Helmet Detection System for Automatic Door Access",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon?<generated>",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ]
+}
