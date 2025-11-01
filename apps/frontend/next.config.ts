@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   turbopack: {}, // Empty turbopack config to silence webpack warning
+  output: "standalone", // Enable standalone output for Docker
 };
 
 export default withPWA({

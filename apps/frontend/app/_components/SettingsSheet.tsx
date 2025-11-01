@@ -33,7 +33,7 @@ export default function SettingsSheet() {
 
   const handleSave = async () => {
     if (!webhookUrl.trim()) {
-      toast.error("Webhook URL cannot be empty");
+      toast.error("Hardware Hook URL cannot be empty");
       return;
     }
 
@@ -60,16 +60,16 @@ export default function SettingsSheet() {
         <SheetHeader>
           <SheetTitle>Configuration Settings</SheetTitle>
           <SheetDescription>
-            Configure webhook URL and other system settings.
+            Configure hardware hook and other system settings.
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 p-4">
           <div className="grid gap-2">
-            <Label htmlFor="webhook-url">Webhook URL</Label>
+            <Label htmlFor="webhook-url">Hardware Hook URL</Label>
             <Input
               id="webhook-url"
               type="url"
-              placeholder="https://example.com/webhook"
+              placeholder="https://example.com/gate-control"
               value={webhookUrl}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setWebhookUrl(e.target.value)
@@ -77,8 +77,9 @@ export default function SettingsSheet() {
               disabled={isLoading || updateConfig.isPending}
             />
             <p className="text-sm text-muted-foreground">
-              Enter the webhook URL to receive notifications when logs are
-              created.
+              Enter the hardware hook URL used to control the gate. The system
+              will send requests to this endpoint to open/close the automatic
+              door.
             </p>
           </div>
 

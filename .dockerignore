@@ -1,0 +1,3 @@
+# Ignore uploaded files in backend
+apps/backend/uploads/*
+!apps/backend/uploads/.gitkeep

@@ -1,0 +1,10 @@
+# Ignore SSL certificates and private keys
+*.pem
+*.crt
+*.key
+
+# Ignore actual SSL configuration (keep only the example)
+ssl.conf
+
+# Allow the example template
+!ssl.conf.example

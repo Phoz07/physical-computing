@@ -8,6 +8,20 @@
       "when": 1761854115679,
       "tag": "0000_cool_silverclaw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1761991466863,
+      "tag": "0001_certain_rumiko_fujikawa",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1761991512467,
+      "tag": "0002_equal_talisman",
+      "breakpoints": true
     }
   ]
 }
