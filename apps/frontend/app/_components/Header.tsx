@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/tooltip";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useHardwareStatus } from "../../src/lib/use-hardware-status";
 
 export default function Header() {
   return (
@@ -57,12 +58,6 @@ interface ServerStatusResponse {
   uptime?: number;
 }
 
-interface HardwareStatusResponse {
-  isOnline: boolean;
-  timestamp?: string;
-  temperature?: number;
-}
-
 function HeaderStatus() {
   const {
     data: serverData,
@@ -80,21 +75,12 @@ function HeaderStatus() {
     retry: 1,
   });
 
+  // Use hardware status from device webhook directly
   const {
     data: hardwareData,
     isError: hardwareError,
     isLoading: hardwareLoading,
-  } = useQuery<HardwareStatusResponse>({
-    queryKey: ["hardwareStatus"],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/hardware/status`
-      );
-      return res.data;
-    },
-    refetchInterval: 5000, // Refetch every 5 seconds
-    retry: 1,
-  });
+  } = useHardwareStatus();
 
   const getServerStatus = (): EnumStatus => {
     if (serverLoading) return EnumStatus.IDLE;
@@ -105,7 +91,7 @@ function HeaderStatus() {
   const getHardwareStatus = (): EnumStatus => {
     if (hardwareLoading) return EnumStatus.IDLE;
     if (hardwareError || !hardwareData) return EnumStatus.ERROR;
-    return hardwareData.isOnline ? EnumStatus.SUCCESS : EnumStatus.ERROR;
+    return hardwareData.is_online ? EnumStatus.SUCCESS : EnumStatus.ERROR;
   };
 
   return (
@@ -152,22 +138,47 @@ function HeaderStatus() {
             </div>
           </TooltipTrigger>
           <TooltipContent>
-            <p>
-              {hardwareLoading
-                ? "Checking hardware status..."
-                : hardwareError || !hardwareData
-                ? "Hardware offline"
-                : hardwareData.isOnline
-                ? hardwareData.timestamp
-                  ? `Last heartbeat: ${dayjs(hardwareData.timestamp).fromNow()}`
-                  : "Hardware is online"
-                : "Hardware is offline"}
-            </p>
-            {hardwareData?.timestamp && (
-              <p className="text-xs text-muted-foreground mt-1">
-                {dayjs(hardwareData.timestamp).format("MMM D, YYYY HH:mm:ss")}
+            <div className="space-y-1">
+              <p>
+                {hardwareLoading
+                  ? "Checking hardware status..."
+                  : hardwareError || !hardwareData
+                  ? "Hardware offline or not configured"
+                  : hardwareData.is_online
+                  ? "Hardware is online"
+                  : "Hardware is offline"}
               </p>
-            )}
+              {hardwareData && (
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <p>
+                    Gate:{" "}
+                    <span className="font-medium">
+                      {hardwareData.gate_status}
+                    </span>
+                  </p>
+                  <p>
+                    Model:{" "}
+                    <span className="font-medium">
+                      {hardwareData.model_loaded ? "Loaded" : "Not loaded"}
+                    </span>
+                  </p>
+                  <p>
+                    Mode:{" "}
+                    <span className="font-medium">
+                      {hardwareData.manual_mode ? "Manual" : "Auto"}
+                    </span>
+                  </p>
+                  {hardwareData.confidence_threshold && (
+                    <p>
+                      Confidence:{" "}
+                      <span className="font-medium">
+                        {hardwareData.confidence_threshold}
+                      </span>
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
           </TooltipContent>
         </Tooltip>
       </div>
