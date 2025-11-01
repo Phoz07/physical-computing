@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json bun.lock* ./
-RUN bun install --production
+RUN bun install
 
 # Rebuild the source code only when needed
 FROM base AS builder
