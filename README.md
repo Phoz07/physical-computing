@@ -1,6 +1,10 @@
-# Helmet Detection System for Automatic Door Access
-
-A full-stack application for helmet detection with automatic gate control, featuring real-time camera streaming, manual gate control, and logging system.
+<div align="center">
+  <img src="apps/frontend/public/full-logo.svg" alt="Helmet Detection System Logo" width="200"/>
+  
+  # Helmet Detection System for Automatic Door Access
+  
+  A full-stack application for helmet detection with automatic gate control, featuring real-time camera streaming, manual gate control, and logging system.
+</div>
 
 ## 🏗️ Project Structure
 
@@ -13,6 +17,10 @@ physical-computing/
 ├── package.json
 └── turbo.json
 ```
+
+### System Architecture
+
+![System Architecture Diagram](apps/frontend/public/diagram.png)
 
 ## 🚀 Tech Stack
 
