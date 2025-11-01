@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Backend (Elysia)
   backend:
@@ -17,9 +15,6 @@ services:
       - ./uploads:/app/uploads
     networks:
       - app-network
-    # Use host network to connect to PostgreSQL on host machine
-    # Or remove this and use the external DATABASE_URL
-    network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
     expose:
