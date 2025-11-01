@@ -1,27 +1,6 @@
 version: '3.8'
 
 services:
-  # PostgreSQL Database
-  postgres:
-    image: postgres:16-alpine
-    container_name: physical-computing-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-physical_computing}
-    ports:
-      - "${POSTGRES_PORT:-5432}:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - app-network
-
   # Backend (Elysia)
   backend:
     build:
@@ -30,16 +9,19 @@ services:
     container_name: physical-computing-backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-physical_computing}
+      # Use external PostgreSQL (from host or remote server)
+      DATABASE_URL: ${DATABASE_URL}
       PORT: 3001
       NODE_ENV: production
     volumes:
       - ./uploads:/app/uploads
-    depends_on:
-      postgres:
-        condition: service_healthy
     networks:
       - app-network
+    # Use host network to connect to PostgreSQL on host machine
+    # Or remove this and use the external DATABASE_URL
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     expose:
       - "3001"
     healthcheck:
@@ -92,7 +74,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
-    driver: local
   nginx_cache:
     driver: local
