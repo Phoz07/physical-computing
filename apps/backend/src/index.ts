@@ -1,13 +1,16 @@
 import { Elysia, t } from "elysia";
 import { db } from "./db";
 import { logTable } from "./db/schema/log";
+import { configTable } from "./db/schema/config";
 import { desc, sql } from "drizzle-orm";
 import { cors } from "@elysiajs/cors";
 import { staticPlugin } from "@elysiajs/static";
+import openapi from "@elysiajs/openapi";
 
 const app = new Elysia()
   .use(cors())
   .use(staticPlugin({ assets: "uploads", prefix: "/uploads" }))
+  .use(openapi())
   .get("/api/status", () => ({ isOnline: true }))
 
   // Get logs with pagination
@@ -45,6 +48,50 @@ const app = new Elysia()
     query: t.Object({
       page: t.Optional(t.String()),
       limit: t.Optional(t.String()),
+    }),
+  })
+
+  // Get config (single row)
+  .get("/config", async () => {
+    try {
+      const rows = await db.select().from(configTable).limit(1);
+      if (!rows || rows.length === 0) {
+        return { data: null };
+      }
+      return { data: rows[0] };
+    } catch (error) {
+      console.error("Error fetching config:", error);
+      return { error: "Failed to fetch config" };
+    }
+  })
+
+  // Create or update config
+  .post("/config", async ({ body }) => {
+    try {
+      // Try to find existing row
+      const [existing] = await db.select().from(configTable).limit(1);
+
+      if (existing) {
+        // Update existing
+        await db
+          .update(configTable)
+          .set({ webhookUrl: body.webhookUrl })
+          .where(sql`${configTable.id} = ${existing.id}`);
+
+        const [updated] = await db.select().from(configTable).where(sql`${configTable.id} = ${existing.id}`);
+        return { success: true, data: updated };
+      }
+
+      // Insert new
+      const [created] = await db.insert(configTable).values({ webhookUrl: body.webhookUrl }).returning();
+      return { success: true, data: created };
+    } catch (error) {
+      console.error("Error upserting config:", error);
+      return { error: "Failed to create/update config" };
+    }
+  }, {
+    body: t.Object({
+      webhookUrl: t.String(),
     }),
   })
 
