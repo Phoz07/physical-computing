@@ -111,6 +111,7 @@ const app = new Elysia()
       return {
         success: true,
         path: `/uploads/${filename}`,
+        url: `/uploads/${filename}`,  // Add for device.py compatibility
       };
     } catch (error) {
       console.error("Error uploading file:", error);

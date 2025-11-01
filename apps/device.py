@@ -28,7 +28,7 @@ MODEL_PATH = "helmet.pt"
 CONF = 0.35 
 IMGSZ = 320
 SERVO_PIN = 18
-SERVER_URL = "http://localhost:3000"  # แก้ไขตาม server ของคุณ
+SERVER_URL = "http://192.168.1.186:3001"  # Backend API URL (port 3001)
 
 # Setup servo
 factory = LGPIOFactory()
