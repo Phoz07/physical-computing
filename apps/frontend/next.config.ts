@@ -4,7 +4,7 @@ import withPWA from "next-pwa";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
+  reactCompiler: false, // Temporarily disabled for Docker builds
   turbopack: {}, // Empty turbopack config to silence webpack warning
   output: "standalone", // Enable standalone output for Docker
 };
