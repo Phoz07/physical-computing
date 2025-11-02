@@ -11,28 +11,34 @@ const outcomes = [
 ];
 ---
 
-<section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
+<section class="flex justify-center items-center py-10 px-4">
+  <div class="w-full container">
     <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
-      <h1
-        class="text-2xl sm:text-3xl md:text-4xl font-bold text-center scroll-fade-in drop-shadow-lg"
-      >
-        Outcomes of the Helmet Detection System
-      </h1>
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full max-w-5xl"
-      >
+      <div class="text-center scroll-fade-in">
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 drop-shadow-lg"
+        >
+          Outcomes of the Helmet Detection System
+        </h1>
+        <p class="max-w-2xl text-base sm:text-lg md:text-xl mx-auto px-4">
+          ผลลัพธ์และประโยชน์ที่คาดว่าจะได้รับจากระบบตรวจจับหมวกกันน็อค
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
         {
           outcomes.map((outcome) => (
-            <div class="bg-white/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-300 hover:border-[#FABB04] hover:scale-105 transition-all duration-300 scroll-fade-in">
+            <div class="bg-white/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-200 transition-all duration-300 scroll-fade-in">
               <div class="flex gap-3">
-                <CheckCircle class="w-5 h-5 sm:w-6 sm:h-6 text-green-400 mt-1" />
-                <p class="text-sm sm:text-base text-gray-300">{outcome}</p>
+                <CheckCircle class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 shrink-0 mt-1" />
+                <p class="text-sm sm:text-base">{outcome}</p>
               </div>
             </div>
           ))
         }
       </div>
     </div>
+  </div>
 </section>
 
 <script>
