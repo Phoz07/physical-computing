@@ -6,6 +6,10 @@
   A full-stack application for helmet detection with automatic gate control, featuring real-time camera streaming, manual gate control, and logging system.
 </div>
 
+## 🎥 Demo Video
+
+Watch our project demo: [Helmet Detection System Demo](https://youtu.be/oa9KFLqirXg)
+
 ## 🏗️ Project Structure
 
 ```
@@ -411,9 +415,31 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-- **สุวิจักขณ์ พรหมสถิตย์** - 67070191
+### Development Team
+
+- **นายศักดิธัช ปิ่นแก้ว** - 67070174
+
+  - Role: Landing Page Developer
+  - GitHub: [Phoz07](https://github.com/Phoz07)
+  - Contribution: 25%
+
+- **น.ส.ปุญญิศา กันจินะ** - 67070102
+
+  - Role: Poster Designer & Documentation
+  - Contribution: 25%
+
+- **นายสุวิจักขณ์ พรหมสถิตย์** - 67070191
+
+  - Role: Hardware & Full Stack Developer
   - GitHub: [suwizx](https://github.com/suwizx)
   - Website: [suwizx.dev](https://suwizx.dev)
+  - Email: suwijak.pak@gmail.com
+  - Contribution: 25%
+
+- **นายณฐพงศ์ โสภาพล** - 67070045
+  - Role: AI/ML & Software Engineer
+  - Website: [nsys.site](https://nsys.site)
+  - Contribution: 25%
 
 ## 🙏 Acknowledgments
 
