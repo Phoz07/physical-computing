@@ -52,6 +52,9 @@ jobs:
           path: ./apps/documentation/dist
 
   deploy:
+    defaults:
+      run:
+        working-directory: ./apps/documentation
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
