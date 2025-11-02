@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-[#18181b];
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+}
+
+p {
+  @apply text-gray-500;
+}

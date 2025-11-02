@@ -1,0 +1,327 @@
+---
+import phycomLogo from "../../public/phycom_logo.svg";
+import Button from "./Button.astro";
+import Container from "./Container.astro";
+import { Image } from "astro:assets";
+---
+
+<section class="min-h-screen flex items-center relative overflow-hidden px-4">
+  <!-- Aurora Background Effect -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <!-- Main gradient background -->
+    <div class="aurora-base"></div>
+
+    <!-- Multiple color layers -->
+    <div class="aurora-layer-1"></div>
+    <div class="aurora-layer-2"></div>
+    <div class="aurora-layer-3"></div>
+    <div class="aurora-layer-4"></div>
+
+    <!-- Glow effects -->
+    <div class="aurora-glow-1"></div>
+    <div class="aurora-glow-2"></div>
+  </div>
+
+  <Container>
+    <div class="relative z-10 animate-fade-in-up">
+      <Image
+        src={phycomLogo}
+        alt="Physical Computing Logo"
+        class="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96"
+      />
+    </div>
+    <div
+      class="relative z-10 flex flex-col items-center gap-4 sm:gap-6 animate-fade-in-up animation-delay-200"
+    >
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center drop-shadow-lg"
+      >
+        Helmet Detection System <br />for Automatic Door Access
+      </h1>
+      <p class="max-w-2xl text-base sm:text-lg md:text-xl text-center px-4">
+        ระบบตรวจจับหมวกกันน็อคอัตโนมัติสำหรับควบคุมการเปิด-ปิดประตูไม้กั้น
+        โดยใช้กล้องและ Raspberry Pi
+        เป็นอุปกรณ์หลักในการตรวจจับผู้ขับขี่มอเตอร์ไซค์ที่สวมหมวกกันน็อคหรือไม่
+        ระบบนี้สามารถประมวลผลภาพแบบ real-time
+        และสั่งเปิดไม้กั้นได้ทันทีหากตรวจพบว่าผู้ขับสวมหมวกอย่างถูกต้อง
+        ทั้งยังสามารถเก็บข้อมูลและแสดงผลสถิติผ่าน Dashboard ออนไลน์
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0"
+      >
+        <Button>
+          <a
+            href="https://github.com/Phoz07/physical-computing"
+            class="block w-full">Source Code</a
+          >
+        </Button>
+        <Button variant="outline">
+          <a href="#abstract" class="block w-full">Abstraction</a>
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  /* Base aurora gradient */
+  .aurora-base {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(59, 130, 246, 0.15),
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 80% 50%,
+        rgba(139, 92, 246, 0.15),
+        transparent 50%
+      );
+  }
+
+  /* Aurora layers with different colors */
+  .aurora-layer-1 {
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(59, 130, 246, 0.3) 0%,
+      rgba(96, 165, 250, 0.2) 20%,
+      transparent 60%
+    );
+    filter: blur(60px);
+    animation: aurora-drift-1 20s ease-in-out infinite;
+  }
+
+  .aurora-layer-2 {
+    position: absolute;
+    top: -40%;
+    right: -5%;
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(139, 92, 246, 0.35) 0%,
+      rgba(168, 85, 247, 0.25) 25%,
+      transparent 65%
+    );
+    filter: blur(70px);
+    animation: aurora-drift-2 18s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  .aurora-layer-3 {
+    position: absolute;
+    top: -30%;
+    right: 0%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(236, 72, 153, 0.3) 0%,
+      rgba(219, 39, 119, 0.2) 30%,
+      transparent 70%
+    );
+    filter: blur(80px);
+    animation: aurora-drift-3 22s ease-in-out infinite;
+    animation-delay: -10s;
+  }
+
+  .aurora-layer-4 {
+    position: absolute;
+    top: -20%;
+    right: 5%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(167, 139, 250, 0.25) 0%,
+      rgba(147, 197, 253, 0.15) 35%,
+      transparent 75%
+    );
+    filter: blur(90px);
+    animation: aurora-drift-4 25s ease-in-out infinite;
+    animation-delay: -15s;
+  }
+
+  /* Glow effects */
+  .aurora-glow-1 {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.4) 0%,
+      rgba(129, 140, 248, 0.2) 30%,
+      transparent 60%
+    );
+    filter: blur(100px);
+    animation: glow-pulse-1 12s ease-in-out infinite;
+    mix-blend-mode: screen;
+  }
+
+  .aurora-glow-2 {
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(
+      circle,
+      rgba(192, 132, 252, 0.35) 0%,
+      rgba(168, 85, 247, 0.15) 35%,
+      transparent 65%
+    );
+    filter: blur(120px);
+    animation: glow-pulse-2 15s ease-in-out infinite;
+    animation-delay: -7s;
+    mix-blend-mode: screen;
+  }
+
+  /* Animations */
+  @keyframes aurora-drift-1 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    33% {
+      transform: translate(-50px, 30px) scale(1.1);
+      opacity: 0.9;
+    }
+    66% {
+      transform: translate(-30px, -20px) scale(0.95);
+      opacity: 0.95;
+    }
+  }
+
+  @keyframes aurora-drift-2 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    33% {
+      transform: translate(-40px, 40px) scale(1.15) rotate(5deg);
+      opacity: 0.85;
+    }
+    66% {
+      transform: translate(-60px, -30px) scale(0.9) rotate(-5deg);
+      opacity: 0.95;
+    }
+  }
+
+  @keyframes aurora-drift-3 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    33% {
+      transform: translate(-30px, 50px) scale(1.2);
+      opacity: 0.8;
+    }
+    66% {
+      transform: translate(-70px, -40px) scale(0.85);
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes aurora-drift-4 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    33% {
+      transform: translate(-60px, 35px) scale(1.1) rotate(-8deg);
+      opacity: 0.9;
+    }
+    66% {
+      transform: translate(-45px, -25px) scale(0.95) rotate(8deg);
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes glow-pulse-1 {
+    0%,
+    100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes glow-pulse-2 {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      opacity: 0.65;
+      transform: scale(1.15) rotate(10deg);
+    }
+  }
+
+  /* Fade In Up Animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .aurora-layer-1,
+    .aurora-layer-2,
+    .aurora-layer-3,
+    .aurora-layer-4 {
+      width: 100%;
+      height: 80%;
+    }
+
+    .aurora-glow-1,
+    .aurora-glow-2 {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .aurora-layer-1,
+    .aurora-layer-2,
+    .aurora-layer-3,
+    .aurora-layer-4 {
+      filter: blur(40px);
+    }
+
+    .aurora-glow-1,
+    .aurora-glow-2 {
+      filter: blur(80px);
+    }
+  }
+</style>

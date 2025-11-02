@@ -1,0 +1,59 @@
+---
+import Container from "./Container.astro";
+import { Image } from "astro:assets";
+import projectIllustration from "../../public/project-illustration.png";
+import circuit from "../../public/circuit.png";
+import dashboard from "../../public/dashboard.png";
+---
+
+<section>
+  <Container>
+    <div class="text-center py-12 sm:py-16 md:py-20 px-4 scroll-fade-in">
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold scroll-fade-in drop-shadow-lg"
+      >
+        Project Overview (ตัวโปรเจกต์)
+      </h1>
+      <Image
+        src={projectIllustration}
+        alt="Project Illustration"
+        class="w-1/2 h-auto mt-8 rounded-lg scroll-fade-in mx-auto"
+      />
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold scroll-fade-in drop-shadow-lg mt-12"
+      >
+        Circuit (วงจรภายใน)
+      </h1>
+      <Image
+        src={circuit}
+        alt="Circuit Diagram"
+        class="w-1/2 h-auto mt-8 rounded-lg scroll-fade-in mx-auto"
+      />
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold scroll-fade-in drop-shadow-lg mt-12"
+      >
+        Dashboard
+      </h1>
+      <Image
+        src={dashboard}
+        alt="Dashboard"
+        class="w-3/4 h-auto mt-8 rounded-lg scroll-fade-in mx-auto"
+      />
+    </div>
+  </Container>
+</section>
+
+<style>
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

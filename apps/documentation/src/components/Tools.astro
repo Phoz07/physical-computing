@@ -1,0 +1,180 @@
+---
+import Container from "./Container.astro";
+
+const tools = [
+  {
+    icon: "🧩",
+    title: "Hardware Components",
+    color: "from-[#FABB04] to-[#F19800]",
+    items: [
+      {
+        name: "Raspberry Pi 5",
+        description: "บอร์ดหลักสำหรับประมวลผลและควบคุมระบบ",
+      },
+      {
+        name: "5MP Camera Module",
+        description: "กล้องสำหรับจับภาพผู้ขับขี่",
+      },
+      {
+        name: "Servo Motor Module",
+        description: "ควบคุมการเปิด-ปิดไม้กั้น",
+      },
+    ],
+  },
+  {
+    icon: "🧠",
+    title: "AI & Image Processing",
+    color: "from-[#FABB04] to-[#F19800]",
+    items: [
+      {
+        name: "OpenCV (cv2)",
+        description: "ใช้ประมวลผลภาพและเชื่อมต่อกล้อง",
+      },
+      {
+        name: "YOLOv9",
+        description: "โมเดลตรวจจับหมวกกันน็อค",
+      },
+    ],
+  },
+  {
+    icon: "🌐",
+    title: "Backend & API",
+    color: "from-[#FABB04] to-[#F19800]",
+    items: [
+      {
+        name: "Elysia.js",
+        description: "Framework สำหรับสร้าง REST API",
+      },
+      {
+        name: "PostgreSQL",
+        description: "ฐานข้อมูลเก็บข้อมูลการตรวจจับ",
+      },
+      {
+        name: "WebSocket / FastAPI",
+        description: "สำหรับการส่งข้อมูล real-time ระหว่างอุปกรณ์และ Dashboard",
+      },
+    ],
+  },
+  {
+    icon: "💻",
+    title: "Dashboard Frontend",
+    color: "from-[#FABB04] to-[#F19800]",
+    items: [
+      {
+        name: "Next.js (React Framework)",
+        description: "พัฒนา Dashboard แสดงข้อมูลสถิติ",
+      },
+      {
+        name: "Shadcn/UI + Tailwind CSS",
+        description: "ออกแบบ UI และกราฟสถิติ",
+      },
+      {
+        name: "WebSocket Client",
+        description: "รับข้อมูลการตรวจจับแบบเรียลไทม์",
+      },
+    ],
+  },
+  {
+    icon: "⚙️",
+    title: "Raspberry Pi Libraries",
+    color: "from-[#FABB04] to-[#F19800]",
+    items: [
+      {
+        name: "RPi.GPIO / gpiozero",
+        description: "ควบคุมอุปกรณ์ผ่านขา GPIO",
+      },
+      {
+        name: "picamera2",
+        description: "ใช้งานกล้องสำหรับการจับภาพ",
+      },
+    ],
+  },
+];
+---
+
+<section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
+  <Container>
+    <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
+      <div class="text-center scroll-fade-in">
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 drop-shadow-lg"
+        >
+          Tools Used in the Helmet Detection System
+        </h1>
+        <p class="max-w-2xl text-base sm:text-lg md:text-xl mx-auto px-4">
+          ระบบตรวจจับหมวกกันน็อคของเราใช้เทคโนโลยีที่ทันสมัยและหลากหลาย
+          ตั้งแต่ฮาร์ดแวร์ที่มีประสิทธิภาพสูง ไปจนถึง AI
+          และซอฟต์แวร์ที่ช่วยให้ระบบทำงานได้อย่างแม่นยำและรวดเร็ว
+        </p>
+      </div>
+
+      <div class="w-full grid gap-6 sm:gap-8 md:gap-10">
+        {
+          tools.map((category) => (
+            <div class="border border-gray-300 rounded-lg overflow-hidden hover:scale-[1.01] transition-all duration-300 scroll-fade-in">
+              <div class={`bg-gradient-to-r ${category.color} p-4 sm:p-6`}>
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl sm:text-4xl">{category.icon}</span>
+                  <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+                    {category.title}
+                  </h2>
+                </div>
+              </div>
+
+              <div class="p-4 sm:p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                  {category.items?.map((item) => (
+                    <div class="p-4 sm:p-5 rounded-lg border border-gray-300 bg-white/45 backdrop-blur-2xl hover:border-[#FABB04] hover:bg-gray-750 hover:scale-105 transition-all duration-300">
+                      <h3 class="font-semibold mb-2 text-sm sm:text-base">
+                        {item.name}
+                      </h3>
+                      {item.description && (
+                        <p class="text-gray-400 text-xs sm:text-sm">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fade-in-visible");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

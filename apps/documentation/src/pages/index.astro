@@ -1,0 +1,23 @@
+---
+import "../styles/global.css";
+
+import Hero from "../components/Hero.astro";
+import Abstract from "../components/Abstract.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Physical Computing Project Documentation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&display=swap");
+    </style>
+  </head>
+  <body class="bg-[#F5F5F0]">
+    <Hero />
+    <Abstract />
+  </body>
+</html>

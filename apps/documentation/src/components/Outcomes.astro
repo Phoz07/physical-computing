@@ -1,0 +1,73 @@
+---
+import Container from "./Container.astro";
+import { CheckCircle } from "@lucide/astro";
+
+const outcomes = [
+  "ระบบสามารถ ตรวจจับผู้ขับขี่ที่สวมหมวกกันน็อคได้แบบ real-time ด้วยความแม่นยำสูง",
+  "ไม้กั้นเปิดอัตโนมัติ เมื่อผู้ขับใส่หมวก และ แสดงแจ้งเตือนเมื่อไม่ใส่",
+  "ระบบสามารถ ทำงานต่อเนื่องตลอด 24 ชั่วโมง โดยไม่ต้องมีเจ้าหน้าที่ประจำ",
+  "มี Dashboard ออนไลน์ แสดงจำนวนผู้สวมและไม่สวมหมวกในแต่ละวัน",
+  "มหาวิทยาลัยสามารถใช้ข้อมูลนี้ในการวางมาตรการความปลอดภัยและรณรงค์สวมหมวกกันน็อคได้อย่างมีประสิทธิภาพ",
+  "โปรเจกต์สามารถต่อยอดใช้งานใน โรงงาน, หน่วยงานราชการ, หรือพื้นที่ควบคุมความปลอดภัยอื่น ๆ ได้ในอนาคต",
+];
+---
+
+<section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
+  <Container>
+    <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold text-center scroll-fade-in drop-shadow-lg"
+      >
+        Outcomes of the Helmet Detection System
+      </h1>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full max-w-5xl"
+      >
+        {
+          outcomes.map((outcome) => (
+            <div class="bg-white/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-300 hover:border-[#FABB04] hover:scale-105 transition-all duration-300 scroll-fade-in">
+              <div class="flex gap-3">
+                <CheckCircle class="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0 mt-1" />
+                <p class="text-sm sm:text-base text-gray-300">{outcome}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fade-in-visible");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
