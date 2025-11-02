@@ -8,5 +8,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: "https://phoz07.github.io",
-  base: "./physical-computing-documentation",
+  base: "./physical-computing",
 });
