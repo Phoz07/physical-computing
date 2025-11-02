@@ -6,7 +6,6 @@ on:
     paths:
       - 'apps/documentation/**'
       - 'packages/**'
-      - 'pnpm-lock.yaml'
   workflow_dispatch:
 
 permissions:
@@ -21,10 +20,15 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/documentation
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       
+      # Setup pnpm เฉพาะสำหรับ documentation
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -35,24 +39,16 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
+          cache-dependency-path: 'apps/documentation/pnpm-lock.yaml'
       
-      # ติดตั้ง dependencies ทั้ง monorepo
+      # Install dependencies เฉพาะใน apps/documentation
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
       
-      # Build เฉพาะ documentation app ด้วย filter
+      # Build
       - name: Build documentation
-        run: pnpm --filter documentation build
+        run: pnpm run build
       
-      # Debug - เช็ค dist folder
-      - name: Debug - Check build output
-        run: |
-          echo "=== Build output ==="
-          ls -la apps/documentation/dist/
-          echo "=== CSS files ==="
-          find apps/documentation/dist/ -name "*.css" -type f
-      
-      # Upload artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -68,6 +64,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      
-      - name: Show deployment URL
-        run: echo "🚀 Deployed to ${{ steps.deployment.outputs.page_url }}"
