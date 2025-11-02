@@ -5,25 +5,23 @@ import dashBoard from "../../public/dashboard.png";
 import mesh from "../../public/mesh.png";
 ---
 
-<section class="flex items-center py-12 sm:py-16 md:py-20 px-4">
-  <Container>
-    <div class="flex flex-col items-center gap-8 sm:gap-6">
+<section class="flex items-center justify-center py-12 sm:py-16 md:py-20 px-4">
+    <div class="flex flex-col items-center gap-4">
       <h1
         class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center scroll-fade-in drop-shadow-lg"
       >
         Problem Statement
       </h1>
       <p
-        class="max-w-2xl text-base sm:text-lg md:text-xl text-center scroll-fade-in"
+        class="max-w-2xl text-base  text-center scroll-fade-in"
       >
         ในปัจจุบันนักศึกษาหลายคนยังขับขี่มอเตอร์ไซค์เข้ามาในมหาวิทยาลัยโดย
-        ไม่สวมหมวกกันน็อค แม้ว่าจะมีกฎบังคับและเจ้าหน้าที่คอยตรวจสอบ
-        แต่ด้วยข้อจำกัดด้านเวลาและจำนวนบุคลากร
-        ทำให้ไม่สามารถตรวจได้ครบทุกคันตลอดเวลา บางครั้งเกิดการพลาดหรือปล่อยผ่าน
-        ซึ่งเพิ่มความเสี่ยงต่อความปลอดภัยของผู้ขับขี่และลดภาพลักษณ์ด้านความปลอดภัยของมหาวิทยาลัยโดยรวม
+        <span class="text-amber-500">ไม่สวมหมวกกันน็อค</span> แม้ว่าจะมีกฎบังคับและเจ้าหน้าที่คอยตรวจสอบ
+        แต่ด้วยข้อจำกัดด้านเวลาและจำนวนบุคลากร ทำให้ไม่สามารถตรวจได้ครบทุกคันตลอดเวลา
+        บางครั้งเกิดการพลาดหรือปล่อยผ่าน ซึ่งเพิ่มความเสี่ยงต่อความปลอดภัยของผู้ขับขี่และลดภาพลักษณ์ด้านความปลอดภัยของมหาวิทยาลัยโดยรวม
       </p>
       <p
-        class="max-w-2xl text-base sm:text-lg md:text-xl text-center text-gray-300 scroll-fade-in"
+        class="max-w-2xl text-base  text-center scroll-fade-in"
       >
         ดังนั้นจึงมีแนวคิดในการพัฒนา ระบบตรวจจับหมวกกันน็อคอัตโนมัติ (Helmet
         Detection System) ที่สามารถทำงานได้ตลอด 24 ชั่วโมง
@@ -31,7 +29,7 @@ import mesh from "../../public/mesh.png";
         เพื่อเพิ่มประสิทธิภาพในการควบคุมและส่งเสริมการสวมหมวกกันน็อคของนักศึกษาอย่างยั่งยืน
       </p>
       <div
-        class="scroll-fade-in w-full flex justify-center items-center relative mt-8"
+        class="scroll-fade-in w-full flex justify-center items-center relative mt-8 max-w-5xl"
       >
         <Image
           src={mesh}
@@ -41,11 +39,10 @@ import mesh from "../../public/mesh.png";
         <Image
           src={dashBoard}
           alt="Dashboard Screenshot"
-          class="p-4 backdrop-blur-2xl w-3/4 h-auto rounded-lg shadow-lg absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-105"
+          class="backdrop-blur-2xl w-3/4 h-auto rounded-lg shadow-lg absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-105"
         />
       </div>
     </div>
-  </Container>
 </section>
 
 <script>
