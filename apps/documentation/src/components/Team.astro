@@ -63,7 +63,7 @@ const team = [
       <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {
           team.map((member) => (
-            <div class="bg-white/45 dark:bg-gray-800/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-200 dark:border-gray-700 transition-all duration-300 scroll-fade-in">
+            <div class="bg-white/45  backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-200  transition-all duration-300 scroll-fade-in">
               <div class="flex flex-col gap-4">
                 {/* Header */}
                 <div class="flex items-center gap-3">
@@ -78,7 +78,7 @@ const team = [
                     <h3 class="text-base sm:text-lg font-bold truncate">
                       {member.name}
                     </h3>
-                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    <p class="text-xs sm:text-sm text-gray-600 ">
                       รหัส: {member.studentId}
                     </p>
                   </div>
@@ -94,7 +94,7 @@ const team = [
                   <p class="text-sm sm:text-base font-semibold text-[#FABB04]">
                     {member.role}
                   </p>
-                  <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p class="text-xs sm:text-sm text-gray-700  leading-relaxed">
                     {member.description}
                   </p>
                 </div>
@@ -104,7 +104,7 @@ const team = [
                   {member.email && (
                     <a
                       href={`mailto:${member.email}`}
-                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white  rounded-lg shadow-sm border border-gray-200  hover:border-[#FABB04] transition-all duration-200 text-xs"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Email"
@@ -116,7 +116,7 @@ const team = [
                   {member.github && (
                     <a
                       href={member.github}
-                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white  rounded-lg shadow-sm border border-gray-200  hover:border-[#FABB04] transition-all duration-200 text-xs"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="GitHub"
@@ -128,7 +128,7 @@ const team = [
                   {member.website && (
                     <a
                       href={member.website}
-                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white  rounded-lg shadow-sm border border-gray-200  hover:border-[#FABB04] transition-all duration-200 text-xs"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Website"
