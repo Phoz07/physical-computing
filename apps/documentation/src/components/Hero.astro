@@ -1,12 +1,11 @@
 ---
 import phycomLogo from "../../public/phycom_logo.svg";
-import Container from "./Container.astro";
 import { Image } from "astro:assets";
 import { ChevronDown, Code, Gauge } from "@lucide/astro";
 ---
 
 <section class="flex items-center justify-center py-10 px-4">
-  <Container>
+  <div class="container">
     <div class="relative z-10">
       <Image
         src={phycomLogo}
@@ -50,5 +49,5 @@ import { ChevronDown, Code, Gauge } from "@lucide/astro";
         ><ChevronDown stroke-width={1.4} />เลื่อนลงเพื่อดูรายละเอียด</a
       >
     </div>
-  </Container>
+  </div>
 </section>

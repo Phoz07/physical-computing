@@ -6,22 +6,122 @@ import Abstract from "../components/Abstract.astro";
 import Navbar from "../components/Navbar.astro";
 ---
 
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>
+      Helmet Detection System - ระบบตรวจจับหมวกกันน็อค | Physical Computing
+      Project
+    </title>
+    <meta
+      name="title"
+      content="Helmet Detection System - ระบบตรวจจับหมวกกันน็อค"
+    />
+    <meta
+      name="description"
+      content="ระบบตรวจจับหมวกกันน็อคอัจฉริยะด้วย AI และ IoT สำหรับเพิ่มความปลอดภัยในการสวมหมวกกันน็อค ใช้ YOLOv9, Raspberry Pi, และ Next.js Dashboard"
+    />
+    <meta
+      name="keywords"
+      content="helmet detection, ตรวจจับหมวกกันน็อค, YOLO, Raspberry Pi, AI, IoT, Physical Computing, Computer Vision, OpenCV, Next.js"
+    />
+    <meta name="author" content="สุวิจักขณ์ พรหมสถิตย์ - 67070191" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://phoz07.github.io/physical-computing/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://phoz07.github.io/physical-computing/"
+    />
+    <meta
+      property="og:title"
+      content="Helmet Detection System - ระบบตรวจจับหมวกกันน็อค"
+    />
+    <meta
+      property="og:description"
+      content="ระบบตรวจจับหมวกกันน็อคอัจฉริยะด้วย AI และ IoT สำหรับเพิ่มความปลอดภัยในการสวมหมวกกันน็อค ใช้ YOLOv9, Raspberry Pi, และ Next.js Dashboard"
+    />
+    <meta
+      property="og:image"
+      content="https://phoz07.github.io/physical-computing/og-image.png"
+    />
+    <meta property="og:image:alt" content="Helmet Detection System Dashboard" />
+    <meta property="og:site_name" content="Helmet Detection System" />
+    <meta property="og:locale" content="th_TH" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://phoz07.github.io/physical-computing/"
+    />
+    <meta
+      property="twitter:title"
+      content="Helmet Detection System - ระบบตรวจจับหมวกกันน็อค"
+    />
+    <meta
+      property="twitter:description"
+      content="ระบบตรวจจับหมวกกันน็อคอัจฉริยะด้วย AI และ IoT สำหรับเพิ่มความปลอดภัยในการสวมหมวกกันน็อค"
+    />
+    <meta
+      property="twitter:image"
+      content="https://phoz07.github.io/physical-computing/og-image.png"
+    />
+    <meta property="twitter:creator" content="@suwizx" />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#FABB04" />
+    <meta name="msapplication-TileColor" content="#FABB04" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&display=swap"
       rel="stylesheet"
     />
-    <title>Physical Computing Project Documentation</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&display=swap");
     </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Helmet Detection System",
+        "applicationCategory": "SecurityApplication",
+        "description": "ระบบตรวจจับหมวกกันน็อคอัจฉริยะด้วย AI และ IoT สำหรับเพิ่มความปลอดภัยในการสวมหมวกกันน็อค",
+        "operatingSystem": "Web, Raspberry Pi OS",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "THB"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "สุวิจักขณ์ พรหมสถิตย์",
+          "identifier": "67070191",
+          "url": "https://suwizx.dev"
+        },
+        "applicationSubCategory": "AI, Computer Vision, IoT",
+        "featureList": [
+          "ตรวจจับหมวกกันน็อคด้วย YOLOv9",
+          "ควบคุมไม้กั้นอัตโนมัติ",
+          "Dashboard แสดงสถิติแบบเรียลไทม์",
+          "บันทึกภาพและข้อมูลการตรวจจับ",
+          "รองรับ Raspberry Pi 5"
+        ],
+        "screenshot": "https://phoz07.github.io/physical-computing/og-image.png"
+      }
+    </script>
   </head>
   <body class="font-noto text-zinc-700">
     <Navbar />

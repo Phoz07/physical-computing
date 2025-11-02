@@ -1,5 +1,4 @@
 ---
-import Container from "./Container.astro";
 import { CheckCircle } from "@lucide/astro";
 
 const outcomes = [
@@ -13,7 +12,6 @@ const outcomes = [
 ---
 
 <section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
-  <Container>
     <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
       <h1
         class="text-2xl sm:text-3xl md:text-4xl font-bold text-center scroll-fade-in drop-shadow-lg"
@@ -27,7 +25,7 @@ const outcomes = [
           outcomes.map((outcome) => (
             <div class="bg-white/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-300 hover:border-[#FABB04] hover:scale-105 transition-all duration-300 scroll-fade-in">
               <div class="flex gap-3">
-                <CheckCircle class="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0 mt-1" />
+                <CheckCircle class="w-5 h-5 sm:w-6 sm:h-6 text-green-400 mt-1" />
                 <p class="text-sm sm:text-base text-gray-300">{outcome}</p>
               </div>
             </div>
@@ -35,7 +33,6 @@ const outcomes = [
         }
       </div>
     </div>
-  </Container>
 </section>
 
 <script>
