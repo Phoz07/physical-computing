@@ -1,0 +1,182 @@
+---
+import { Mail, Github, Globe } from "@lucide/astro";
+
+const team = [
+  {
+    name: "นายศักดิธัช ปิ่นแก้ว",
+    studentId: "67070174",
+    role: "Landing Page Developer",
+    description:
+      "ออกแบบและพัฒนาหน้า Landing Page เพื่อนำเสนอโครงงาน รวมถึงการจัดวาง UI/UX ให้สวยงามและใช้งานง่าย",
+    contribution: "25%",
+    github: "https://github.com/Phoz07",
+    image: "/physical-computing/team/sakkidirh.jpg",
+  },
+  {
+    name: "น.ส.ปุญญิศา กันจินะ",
+    studentId: "67070102",
+    role: "Poster Designer & Documentation",
+    description:
+      "ออกแบบ Poster สำหรับนำเสนอโครงงาน และจัดทำเอกสารประกอบโครงงานทั้งหมด รวมถึงคู่มือการใช้งาน",
+    contribution: "25%",
+    image: "/physical-computing/team/punyisa.jpg",
+  },
+  {
+    name: "นายสุวิจักขณ์ พรหมสถิตย์",
+    studentId: "67070191",
+    role: "Hardware & Full Stack Developer",
+    description:
+      "ติดตั้งและเชื่อมต่อ Hardware (Raspberry Pi, Camera, Servo) พัฒนา Dashboard Frontend และ Backend API สำหรับจัดการข้อมูล",
+    contribution: "25%",
+    github: "https://github.com/suwizx",
+    website: "https://suwizx.dev",
+    email: "suwijak.pak@gmail.com",
+    image: "/physical-computing/team/suwichak.jpg",
+  },
+  {
+    name: "นายณฐพงศ์ โสภาพล",
+    studentId: "67070045",
+    role: "AI/ML & Software Engineer",
+    description:
+      "พัฒนา AI Model สำหรับตรวจจับหมวกกันน็อคด้วย YOLOv9 และเขียน Software สำหรับควบคุมระบบทั้งหมดบน Raspberry Pi",
+    contribution: "25%",
+    website: "https://nsys.site",
+    image: "/physical-computing/team/natthapon.jpg",
+  },
+];
+---
+
+<section class="flex items-center py-12 sm:py-16 md:py-20 px-4">
+  <div class="w-full max-w-7xl mx-auto">
+    <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
+      <div class="text-center scroll-fade-in">
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 drop-shadow-lg"
+        >
+          ผู้จัดทำโครงงาน
+        </h1>
+        <p class="max-w-2xl text-base sm:text-lg md:text-xl mx-auto px-4">
+          ทีมพัฒนาระบบตรวจจับหมวกกันน็อค Helmet Detection System
+        </p>
+      </div>
+
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {
+          team.map((member) => (
+            <div class="bg-white/45 dark:bg-gray-800/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-200 dark:border-gray-700 transition-all duration-300 scroll-fade-in">
+              <div class="flex flex-col gap-4">
+                {/* Header */}
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 shrink-0 rounded-full overflow-hidden ring-2 ring-[#FABB04]">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-base sm:text-lg font-bold truncate">
+                      {member.name}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                      รหัส: {member.studentId}
+                    </p>
+                  </div>
+                  <div class="shrink-0">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FABB04] text-white">
+                      {member.contribution}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Role & Description */}
+                <div class="space-y-2">
+                  <p class="text-sm sm:text-base font-semibold text-[#FABB04]">
+                    {member.role}
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {member.description}
+                  </p>
+                </div>
+
+                {/* Social Links */}
+                <div class="flex gap-2 flex-wrap">
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Email"
+                    >
+                      <Mail class="w-3.5 h-3.5" />
+                      <span>Email</span>
+                    </a>
+                  )}
+                  {member.github && (
+                    <a
+                      href={member.github}
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="GitHub"
+                    >
+                      <Github class="w-3.5 h-3.5" />
+                      <span>GitHub</span>
+                    </a>
+                  )}
+                  {member.website && (
+                    <a
+                      href={member.website}
+                      class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] transition-all duration-200 text-xs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Website"
+                    >
+                      <Globe class="w-3.5 h-3.5" />
+                      <span>Website</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fade-in-visible");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

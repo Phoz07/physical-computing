@@ -1,0 +1,92 @@
+---
+import { Github, Youtube, ExternalLink, Mail } from "@lucide/astro";
+import Image from "astro/components/Image.astro";
+import Logo from "../../public/logo.svg";
+---
+
+<footer class="bg-amber-50 border-t border-gray-200">
+  <div class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="flex flex-col md:flex-row justify-between gap-8">
+      {/* About */}
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <Image src={Logo} alt="Logo" class="h-auto w-20" />
+          <h3 class="text-lg font-bold">Helmet Detection System</h3>
+        </div>
+        <p class="text-sm text-gray-600">
+          ระบบตรวจจับหมวกกันน็อคอัจฉริยะด้วย AI และ IoT
+          เพื่อเพิ่มความปลอดภัยในการสวมหมวกกันน็อค
+        </p>
+      </div>
+
+      {/* Quick Links */}
+      <div class="space-y-4 flex flex-col md:items-end">
+        <h3 class="text-lg font-bold">Quick Links</h3>
+        <ul class="space-y-2 flex flex-col md:items-end">
+          <li>
+            <a
+              href="https://phycom.suwizx.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-sm text-gray-600 hover:text-[#FABB04] transition-colors"
+            >
+              <ExternalLink class="w-4 h-4" />
+              <span>Live Demo Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/Phoz07/physical-computing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-sm text-gray-600 hover:text-[#FABB04] transition-colors"
+            >
+              <Github class="w-4 h-4" />
+              <span>GitHub Repository</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://youtu.be/oa9KFLqirXg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-sm text-gray-600 hover:text-[#FABB04] transition-colors"
+            >
+              <Youtube class="w-4 h-4" />
+              <span>Demo Video</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div
+      class="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4"
+    >
+      <p class="text-sm text-gray-600 text-center sm:text-left">
+        Physical Computing Project | IT22@KMITL
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://github.com/Phoz07/physical-computing"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-600 hover:text-[#FABB04] transition-colors"
+          aria-label="GitHub"
+        >
+          <Github class="w-5 h-5" />
+        </a>
+        <a
+          href="https://youtu.be/oa9KFLqirXg"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-600 hover:text-[#FABB04] transition-colors"
+          aria-label="YouTube"
+        >
+          <Youtube class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
