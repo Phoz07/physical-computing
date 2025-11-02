@@ -150,7 +150,7 @@ def detection_thread():
     print(f"✅ Model loaded. Classes: {list(names.values())}")
     
     # เริ่มต้น servo
-    set_angle(0)
+    set_angle(180)
     
     while True:
         try:
@@ -193,7 +193,7 @@ def detection_thread():
                     
                 elif not has_helmet and is_servo_open:
                     is_servo_open = False
-                    set_angle(0)
+                    set_angle(180)
             
             # เพิ่มข้อมูลลงในภาพ
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -274,7 +274,7 @@ async def control_gate(gate: GateControl):
     elif gate.action.lower() == "close":
         manual_mode = False
         is_servo_open = False
-        set_angle(0)
+        set_angle(180)
         return {
             "success": True,
             "message": "Gate closed",
@@ -323,7 +323,7 @@ async def shutdown_event():
             picam2.stop()
     except:
         pass
-    set_angle(0)
+    set_angle(180)
     print("✅ ปิดโปรแกรมเรียบร้อย")
 
 def main():

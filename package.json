@@ -19,7 +19,9 @@
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@lucide/astro": "^0.552.0"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.2.0",
     "shadcn": "^3.5.0",
