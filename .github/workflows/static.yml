@@ -1,20 +1,19 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger เมื่อมีการ push ไปยัง branch main
   push:
     branches: [ main ]
-  
-  # หรือสามารถ trigger manually ได้จากหน้า Actions
+    paths:
+      - 'apps/documentation/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
   workflow_dispatch:
 
-# ตั้งค่า permissions สำหรับ GITHUB_TOKEN
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# ป้องกันไม่ให้มี concurrent deployments
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -37,24 +36,29 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
       
+      # ติดตั้ง dependencies ทั้ง monorepo
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
       
-      - name: Install Sharp
-        run: pnpm add sharp
+      # Build เฉพาะ documentation app ด้วย filter
+      - name: Build documentation
+        run: pnpm --filter documentation build
       
-      - name: Build with Astro
-        run: pnpm run build
+      # Debug - เช็ค dist folder
+      - name: Debug - Check build output
+        run: |
+          echo "=== Build output ==="
+          ls -la apps/documentation/dist/
+          echo "=== CSS files ==="
+          find apps/documentation/dist/ -name "*.css" -type f
       
+      # Upload artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./apps/documentation/dist
 
   deploy:
-    defaults:
-      run:
-        working-directory: ./apps/documentation
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -64,3 +68,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      
+      - name: Show deployment URL
+        run: echo "🚀 Deployed to ${{ steps.deployment.outputs.page_url }}"
