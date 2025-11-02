@@ -1,7 +1,4 @@
 ---
-import Container from "./Container.astro";
-import { Goal } from "@lucide/astro";
-
 const objectives = [
   "เพื่อพัฒนา ระบบตรวจจับการสวมหมวกกันน็อคอัตโนมัติ สำหรับผู้ขับขี่มอเตอร์ไซค์ที่ผ่านเข้าออกพื้นที่มหาวิทยาลัย",
   "เพื่อให้ระบบสามารถ สั่งควบคุมอุปกรณ์ไม้กั้น (Servo) ได้ตามผลการตรวจจับแบบ real-time",
@@ -11,62 +8,42 @@ const objectives = [
 ];
 ---
 
-<section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
-  <Container>
-    <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
-      <h1
-        class="text-2xl sm:text-3xl md:text-4xl font-bold text-center scroll-fade-in drop-shadow-lg"
-      >
-        Objectives
-      </h1>
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full max-w-5xl"
-      >
-        {
-          objectives.map((objective) => (
-            <div class="bg-white/45 backdrop-blur-2xl rounded-lg p-4 sm:p-6 border border-gray-300 hover:border-[#FABB04] hover:scale-105 transition-all duration-300 scroll-fade-in">
-              <div class="flex gap-3">
-                <Goal class="w-5 h-5 sm:w-6 sm:h-6 text-[#FABB04] flex-shrink-0 mt-1" />
-                <p class="text-sm sm:text-base text-gray-300">{objective}</p>
-              </div>
-            </div>
-          ))
-        }
+<section class="flex items-center justify-center py-10 bg-amber-50">
+  <div class="container p-4 flex flex-col">
+    <div class="flex gap-6 flex-col xl:flex-row">
+      <div class="flex-1">
+        <div>
+          <p
+            class="uppercase text-amber-500 px-2 mb-2 h-fit rounded-full flex gap-2 items-center"
+          >
+            วัตถุประสงค์
+          </p>
+          <h1
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold scroll-fade-in drop-shadow-lg mb-6"
+          >
+            Objectives
+          </h1>
+        </div>
+        <ul class="list-disc list-outside ml-5 marker:text-amber-400 text-lg">
+          {
+            objectives.map((objective) => (
+              <li>
+                {objective}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="flex-1">
+        <div class="aspect-video rounded-2xl overflow-hidden">
+          <iframe
+            class="w-full h-full block"
+            src="https://www.youtube.com/embed/oa9KFLqirXg?si=txkTRyXQKR-ONTqM"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
-  </Container>
+  </div>
 </section>
-
-<script>
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in-visible");
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll(".scroll-fade-in").forEach((el) => {
-    observer.observe(el);
-  });
-</script>
-
-<style>
-  .scroll-fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.8s ease-out,
-      transform 0.8s ease-out;
-  }
-
-  .fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
