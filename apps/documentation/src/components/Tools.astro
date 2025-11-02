@@ -3,146 +3,168 @@ import Container from "./Container.astro";
 
 const tools = [
   {
-    icon: "🧩",
     title: "Hardware Components",
-    color: "from-[#FABB04] to-[#F19800]",
     items: [
       {
         name: "Raspberry Pi 5",
         description: "บอร์ดหลักสำหรับประมวลผลและควบคุมระบบ",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/raspberrypi/raspberrypi-original.svg",
+        url: "https://www.raspberrypi.com/products/raspberry-pi-5/",
       },
       {
-        name: "5MP Camera Module",
+        name: "Camera Module",
         description: "กล้องสำหรับจับภาพผู้ขับขี่",
+        icon: "📷",
+        url: "https://www.raspberrypi.com/products/camera-module-v2/",
       },
       {
-        name: "Servo Motor Module",
+        name: "Servo Motor",
         description: "ควบคุมการเปิด-ปิดไม้กั้น",
+        icon: "⚙️",
+        url: "https://en.wikipedia.org/wiki/Servomotor",
       },
     ],
   },
   {
-    icon: "🧠",
     title: "AI & Image Processing",
-    color: "from-[#FABB04] to-[#F19800]",
     items: [
       {
-        name: "OpenCV (cv2)",
+        name: "OpenCV",
         description: "ใช้ประมวลผลภาพและเชื่อมต่อกล้อง",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
+        url: "https://opencv.org/",
       },
       {
         name: "YOLOv9",
         description: "โมเดลตรวจจับหมวกกันน็อค",
+        icon: "🧠",
+        url: "https://github.com/WongKinYiu/yolov9",
       },
     ],
   },
   {
-    icon: "🌐",
     title: "Backend & API",
-    color: "from-[#FABB04] to-[#F19800]",
     items: [
       {
         name: "Elysia.js",
         description: "Framework สำหรับสร้าง REST API",
+        icon: "https://elysiajs.com/assets/elysia.svg",
+        url: "https://elysiajs.com/",
       },
       {
         name: "PostgreSQL",
         description: "ฐานข้อมูลเก็บข้อมูลการตรวจจับ",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+        url: "https://www.postgresql.org/",
       },
       {
-        name: "WebSocket / FastAPI",
+        name: "FastAPI",
         description: "สำหรับการส่งข้อมูล real-time ระหว่างอุปกรณ์และ Dashboard",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+        url: "https://fastapi.tiangolo.com/",
       },
     ],
   },
   {
-    icon: "💻",
     title: "Dashboard Frontend",
-    color: "from-[#FABB04] to-[#F19800]",
     items: [
       {
-        name: "Next.js (React Framework)",
+        name: "Next.js",
         description: "พัฒนา Dashboard แสดงข้อมูลสถิติ",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+        url: "https://nextjs.org/",
       },
       {
-        name: "Shadcn/UI + Tailwind CSS",
+        name: "React",
+        description: "UI Library สำหรับสร้าง Dashboard",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+        url: "https://react.dev/",
+      },
+      {
+        name: "Tailwind CSS",
         description: "ออกแบบ UI และกราฟสถิติ",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+        url: "https://tailwindcss.com/",
       },
       {
-        name: "WebSocket Client",
-        description: "รับข้อมูลการตรวจจับแบบเรียลไทม์",
+        name: "Shadcn/UI",
+        description: "Component Library สำหรับ UI",
+        icon: "https://ui.shadcn.com/favicon.ico",
+        url: "https://ui.shadcn.com/",
       },
     ],
   },
   {
-    icon: "⚙️",
-    title: "Raspberry Pi Libraries",
-    color: "from-[#FABB04] to-[#F19800]",
+    title: "Python Libraries",
     items: [
       {
-        name: "RPi.GPIO / gpiozero",
+        name: "gpiozero",
         description: "ควบคุมอุปกรณ์ผ่านขา GPIO",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+        url: "https://gpiozero.readthedocs.io/",
       },
       {
         name: "picamera2",
         description: "ใช้งานกล้องสำหรับการจับภาพ",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+        url: "https://github.com/raspberrypi/picamera2",
       },
     ],
   },
 ];
 ---
 
-<section class="min-h-screen flex items-center py-12 sm:py-16 md:py-20 px-4">
-  <Container>
-    <div class="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
-      <div class="text-center scroll-fade-in">
-        <h1
-          class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 drop-shadow-lg"
-        >
-          Tools Used in the Helmet Detection System
-        </h1>
-        <p class="max-w-2xl text-base sm:text-lg md:text-xl mx-auto px-4">
-          ระบบตรวจจับหมวกกันน็อคของเราใช้เทคโนโลยีที่ทันสมัยและหลากหลาย
-          ตั้งแต่ฮาร์ดแวร์ที่มีประสิทธิภาพสูง ไปจนถึง AI
-          และซอฟต์แวร์ที่ช่วยให้ระบบทำงานได้อย่างแม่นยำและรวดเร็ว
-        </p>
-      </div>
-
-      <div class="w-full grid gap-6 sm:gap-8 md:gap-10">
-        {
-          tools.map((category) => (
-            <div class="border border-gray-300 rounded-lg overflow-hidden hover:scale-[1.01] transition-all duration-300 scroll-fade-in">
-              <div class={`bg-gradient-to-r ${category.color} p-4 sm:p-6`}>
-                <div class="flex items-center gap-3">
-                  <span class="text-3xl sm:text-4xl">{category.icon}</span>
-                  <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white">
-                    {category.title}
-                  </h2>
-                </div>
-              </div>
-
-              <div class="p-4 sm:p-6 md:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                  {category.items?.map((item) => (
-                    <div class="p-4 sm:p-5 rounded-lg border border-gray-300 bg-white/45 backdrop-blur-2xl hover:border-[#FABB04] hover:bg-gray-750 hover:scale-105 transition-all duration-300">
-                      <h3 class="font-semibold mb-2 text-sm sm:text-base">
-                        {item.name}
-                      </h3>
-                      {item.description && (
-                        <p class="text-gray-400 text-xs sm:text-sm">
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+<section class="justify-center flex items-center py-12 sm:py-16 md:py-20 px-4">
+  <div
+    class="flex w-full container flex-col items-center gap-8 sm:gap-10 md:gap-12"
+  >
+    <div class="text-center scroll-fade-in">
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 drop-shadow-lg"
+      >
+        Tools Used in the Helmet Detection System
+      </h1>
+      <p class="max-w-2xl text-base sm:text-lg md:text-xl mx-auto px-4">
+        ระบบตรวจจับหมวกกันน็อคของเราใช้เทคโนโลยีที่ทันสมัยและหลากหลาย
+        ตั้งแต่ฮาร์ดแวร์ที่มีประสิทธิภาพสูง ไปจนถึง AI
+        และซอฟต์แวร์ที่ช่วยให้ระบบทำงานได้อย่างแม่นยำและรวดเร็ว
+      </p>
     </div>
-  </Container>
+
+    <div class="w-full max-w-4xl grid gap-8 sm:gap-10 md:gap-12">
+      {
+        tools.map((category) => (
+          <div class="flex flex-col md:flex-row gap-2 md:gap-4 scroll-fade-in">
+            <h2 class="md:min-w-[350px] text-lg md:text-2xl font-semibold">
+              {category.title}
+            </h2>
+            <div class="w-full flex gap-2 md:gap-3 flex-wrap">
+              {category.items?.map((item) => (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="tool-item py-1 px-2 bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 hover:border-[#FABB04] hover:shadow-md transition-all duration-200 flex items-center gap-2 cursor-pointer no-underline"
+                >
+                  {typeof item.icon === "string" &&
+                  item.icon.startsWith("http") ? (
+                    <img
+                      class="h-[18px] aspect-square object-center object-cover"
+                      src={item.icon}
+                      alt={item.name}
+                    />
+                  ) : (
+                    <span class="text-lg">{item.icon}</span>
+                  )}
+                  <p class="text-base md:text-lg font-medium">{item.name}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <script>
