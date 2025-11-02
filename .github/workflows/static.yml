@@ -28,7 +28,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      # Setup pnpm เฉพาะสำหรับ documentation
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -41,11 +40,12 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'apps/documentation/pnpm-lock.yaml'
       
-      # Install dependencies เฉพาะใน apps/documentation
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+
+      - name: Install Sharp
+        run: pnpm add sharp
       
-      # Build
       - name: Build documentation
         run: pnpm run build
       
